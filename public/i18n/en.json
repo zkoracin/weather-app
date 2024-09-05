@@ -4,5 +4,6 @@
     "header_slovenian": "Slovenian",
     "today_title": "Todays Weather",
     "future_title": "Future Weather",
-    "date": "Date"
+    "date": "Date",
+    "refresh": "Refresh Data"
 }
