@@ -1,3 +1,4 @@
+<app-timestamp-card></app-timestamp-card>
 <h1>Todays weather</h1>
 @if (weatherService.forecastToday()) {
   @for (item of weatherService.forecastToday()?.dateForecasts; track $index) {

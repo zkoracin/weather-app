@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Forecast, List, WeatherApiResponse } from '../interfaces/weather.interface';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
+import moment from 'moment';
 
 
 @Injectable({
@@ -13,6 +14,8 @@ export class WeatherService {
   private baseUrl = environment.baseUrl;
   private apiKey = environment.apiKey;
 
+  forecastCity = signal<string | null>(null);
+  forecastFetched = signal<string | null>(null);
   forecastToday = signal<Forecast | null>(null);
   forecastFuture = signal<Forecast[] | null>(null);
 
@@ -46,6 +49,8 @@ export class WeatherService {
     ).subscribe(res => {
       this.forecastToday.set(res.forecasts[0]);
       this.forecastFuture.set(res.forecasts.slice(1));
+      this.forecastCity.set(res.city);
+      this.forecastFetched.set(moment().format('DD.MM.YYYY HH:mm:ss'));
     });
   }
 
