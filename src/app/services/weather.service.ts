@@ -4,6 +4,7 @@ import { Forecast, List, WeatherApiResponse } from '../interfaces/weather.interf
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Injectable({
@@ -11,6 +12,7 @@ import moment from 'moment';
 })
 export class WeatherService {
   private http = inject(HttpClient);
+  private translationService = inject(TranslateService);
   private baseUrl = environment.baseUrl;
   private apiKey = environment.apiKey;
 
@@ -54,7 +56,8 @@ export class WeatherService {
     });
   }
 
-  private setUrlParams(lang='en', lat='46.5547', lon='15.6467', units='metric') {
+  private setUrlParams(lat='46.5547', lon='15.6467', units='metric') {
+    const lang = this.translationService.currentLang;
     let params = new HttpParams();
     params = params.append('lat', lat);
     params = params.append('lon', lon);

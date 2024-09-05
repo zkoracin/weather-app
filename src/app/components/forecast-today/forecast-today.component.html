@@ -1,9 +1,8 @@
 <div class="card">
-  <h1>Todays weather</h1>
+  <h1>{{ 'today_title' | translate}}</h1>
   @if (weatherService.forecastToday()) {
     @for (item of weatherService.forecastToday()?.dateForecasts; track $index) {
-      <h2>time: {{ item.dt_txt}}</h2>
-      <h3>weather: {{ item.weather[0].description}}</h3>
+      <h2>{{ item.dt_txt.split(' ')[1]}} - {{  item.weather[0].description }}</h2>
     }
   }
 </div>

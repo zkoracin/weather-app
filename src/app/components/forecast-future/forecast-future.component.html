@@ -1,11 +1,10 @@
 <div class="card">
-  <h1>Future weather</h1>
+  <h1>{{ 'future_title' | translate}}</h1>
   @if (weatherService.forecastFuture()) {
     @for (item of weatherService.forecastFuture(); track $index) {
-      <h1>Date: {{ item.date}}</h1>
+      <h1>{{ 'date' | translate }} : {{ transformDate(item.date) }}</h1>
       @for (weather of item.dateForecasts; track $index) {
-        <h2>time: {{ weather.dt_txt}}</h2>
-      <h3>weather: {{ weather.weather[0].description}}</h3>
+        <h2>{{ weather.dt_txt.split(' ')[1] }} - {{ weather.weather[0].description}}</h2>
       }
     }
   }
