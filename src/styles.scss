@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+.card {
+    border: 1px solid lightcyan;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}

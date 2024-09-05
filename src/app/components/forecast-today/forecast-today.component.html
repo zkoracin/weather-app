@@ -1,0 +1,9 @@
+<div class="card">
+  <h1>Todays weather</h1>
+  @if (weatherService.forecastToday()) {
+    @for (item of weatherService.forecastToday()?.dateForecasts; track $index) {
+      <h2>time: {{ item.dt_txt}}</h2>
+      <h3>weather: {{ item.weather[0].description}}</h3>
+    }
+  }
+</div>

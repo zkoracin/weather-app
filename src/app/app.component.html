@@ -1,22 +1,19 @@
-<app-timestamp-card></app-timestamp-card>
-<h1>Todays weather</h1>
-@if (weatherService.forecastToday()) {
-  @for (item of weatherService.forecastToday()?.dateForecasts; track $index) {
-    <h2>time: {{ item.dt_txt}}</h2>
-    <h3>weather: {{ item.weather[0].description}}</h3>
-  }
-}
 
-<h1>Future weather</h1>
-@if (weatherService.forecastFuture()) {
-  @for (item of weatherService.forecastFuture(); track $index) {
-    <h1>Date: {{ item.date}}</h1>
-    @for (weather of item.dateForecasts; track $index) {
-      <h2>time: {{ weather.dt_txt}}</h2>
-    <h3>weather: {{ weather.weather[0].description}}</h3>
-    }
-  }
-}
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <app-timestamp-card></app-timestamp-card>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-forecast-today></app-forecast-today>
+    </div>
+    <div class="col">
+      <app-forecast-future></app-forecast-future>
+    </div>
+  </div>
+</div>
+
 
 <ngx-spinner type="line-scale-party">
 </ngx-spinner>
