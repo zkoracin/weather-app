@@ -19,6 +19,6 @@ export class AppComponent {
   weatherService = inject(WeatherService);
 
   constructor() {
-    this.weatherService.getWeatherForecast();
+    this.weatherService.getStoredWeatherData();
   }
 }

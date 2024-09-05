@@ -49,11 +49,37 @@ export class WeatherService {
         };
       })
     ).subscribe(res => {
-      this.forecastToday.set(res.forecasts[0]);
-      this.forecastFuture.set(res.forecasts.slice(1));
-      this.forecastCity.set(res.city);
-      this.forecastFetched.set(moment().format('DD.MM.YYYY HH:mm:ss'));
+      const timestamp = moment().format('DD.MM.YYYY HH:mm:ss');
+      this.setDataSignals(res.forecasts[0], res.forecasts.slice(1), res.city, timestamp);
+      this.saveWeatherData(res.forecasts[0], res.forecasts.slice(1), res.city, timestamp);
     });
+  }
+
+  saveWeatherData(today: Forecast, future: Forecast[], city: string, timestamp: string) {
+    localStorage.setItem('weather_data', JSON.stringify({today, future, city, timestamp}));
+  }
+
+  getStoredWeatherData() {
+    const data = localStorage.getItem('weather_data');
+    if (data) {
+      const parsedData = JSON.parse(data);
+      this.setDataSignals(parsedData.today, parsedData.future, parsedData.city, parsedData.timestamp);
+      // Simulate slow loading
+      if (!environment.production) {
+        setTimeout(() => {
+          this.getWeatherForecast();
+        }, 3000);
+      }
+    } else {
+      this.getWeatherForecast();
+    }
+  }
+
+  private setDataSignals(today: Forecast, future: Forecast[], city: string, timestamp: string) {
+    this.forecastToday.set(today);
+    this.forecastFuture.set(future);
+    this.forecastCity.set(city);
+    this.forecastFetched.set(timestamp);
   }
 
   private setUrlParams(lat='46.5547', lon='15.6467', units='metric') {
