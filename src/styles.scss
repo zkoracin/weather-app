@@ -1,15 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --bg-color: #f2f2f2;
+    --primary-color: #e86e1e;  
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+}
 
 .card {
-    border: 1px solid lightcyan;
     padding: 10px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    padding: 0 16px 16px 16px;
+    margin-top: 60px;
 }
 
 .row {
     display: flex;
+    justify-content: center;
+    &:first-of-type {
+        margin-bottom: 16px;
+    }
+}
+
+.col {
+    max-width: 160px;
+    width: 49%;
+    &:first-of-type {
+        margin-right: 2%;
+    }
+}
+
+@media (min-width: 768px) and (min-width: 768px) {
+    .container {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 320px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+    .col {
+        width: 100%;
+        &:first-of-type {
+            margin-right: 0;
+            margin-bottom: 16px;
+        }
+    }
 }
