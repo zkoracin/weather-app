@@ -1,3 +1,7 @@
+# Prerequisites
+Use your own api key
+```cp env.example src/environments/environment.development.ts```
+
 # WeatherApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
