@@ -1,13 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-:root {
-    --bg-color: #f2f2f2;
-    --primary-color: #e86e1e;  
-}
+@import './sass/variables.scss';
+@import './sass//mixins.scss';
 
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
+    background-color: $bg-color;
 }
 
 .card {
@@ -19,6 +17,9 @@ body {
     flex-direction: column;
     padding: 0 16px 16px 16px;
     margin-top: 60px;
+    @include respond-to('large') {
+        padding: 32px;
+    }
 }
 
 .row {
@@ -26,6 +27,10 @@ body {
     justify-content: center;
     &:first-of-type {
         margin-bottom: 16px;
+    }
+    @include respond-to('small') {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -35,20 +40,7 @@ body {
     &:first-of-type {
         margin-right: 2%;
     }
-}
-
-@media (min-width: 768px) and (min-width: 768px) {
-    .container {
-        padding: 32px;
-    }
-}
-
-@media (max-width: 320px) {
-    .row {
-        flex-direction: column;
-        align-items: center;
-    }
-    .col {
+    @include respond-to('small') {
         width: 100%;
         &:first-of-type {
             margin-right: 0;

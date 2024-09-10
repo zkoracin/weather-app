@@ -1,17 +1,18 @@
+@import '../../../sass/variables.scss';
+@import '../../../sass/mixins.scss';
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 44px;
-    background-color: var(--primary-color);
+    background-color: $primary-color;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-}
 
-@media (min-width: 768px) and (min-height: 768px) {
-    header {
+    @include respond-to('large') {
         height: 56px;
     }
 }
