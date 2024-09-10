@@ -1,8 +1,8 @@
 <header>
     <h3>{{ 'header_title' | translate }}</h3>
-    <select (change)="onLanguageChange($event)" [value]="selectedLang">
+    <select (change)="onLanguageChange($event)">
         @for (lang of languageService.getLanguages(); track $index) {
-            <option [value]="lang.code">
+            <option [value]="lang.code" [selected]="languageService.selectedLang()!.code === lang.code">
                 {{ lang.name }}
               </option>
         }

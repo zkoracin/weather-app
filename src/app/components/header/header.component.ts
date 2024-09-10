@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { WeatherService } from '../../services/weather.service';
 import { LanguageService } from '../../services/language.service';
 
@@ -11,13 +11,12 @@ import { LanguageService } from '../../services/language.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  translationService = inject(TranslateService);
   weatherService = inject(WeatherService)
   languageService = inject(LanguageService);
-  selectedLang = this.languageService.getLanguages()[0];
 
-  onLanguageChange(event: any) {
-    this.translationService.use(event.target.value);
+  onLanguageChange(event: Event) {
+    const selectedElement = event.target as HTMLSelectElement;
+    this.languageService.updateLang(selectedElement.value);
     this.weatherService.getWeatherForecast();
   }
 }

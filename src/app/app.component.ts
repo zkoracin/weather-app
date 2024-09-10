@@ -6,6 +6,7 @@ import { TimestampCardComponent } from "./components/timestamp-card/timestamp-ca
 import { ForecastTodayComponent } from "./components/forecast-today/forecast-today.component";
 import { ForecastFutureComponent } from "./components/forecast-future/forecast-future.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,10 @@ import { HeaderComponent } from "./components/header/header.component";
 export class AppComponent {
   title = 'weather-app';
   weatherService = inject(WeatherService);
+  langService = inject(LanguageService);
 
   constructor() {
+    this.langService.setDefaultLang();
     this.weatherService.getStoredWeatherData();
   }
 }
