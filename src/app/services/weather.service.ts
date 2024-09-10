@@ -3,14 +3,15 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Forecast, List, WeatherApiResponse } from '../interfaces/weather.interface';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
-import moment from 'moment';
+import { MomentDatePipe } from '../pipes/moment-date.pipe';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WeatherService {
   private http = inject(HttpClient);
+  private momentDatePipe = inject(MomentDatePipe);
   private baseUrl = environment.baseUrl;
   private apiKey = environment.apiKey;
 
@@ -47,7 +48,7 @@ export class WeatherService {
         };
       })
     ).subscribe(res => {
-      const timestamp = moment().format('DD.MM.YYYY HH:mm:ss');
+      const timestamp = this.momentDatePipe.transform(new Date(), 'DD.MM.YYYY HH:mm:ss');
       this.setDataSignals(res.forecasts[0], res.forecasts.slice(1), res.city, timestamp);
       this.saveWeatherData(res.forecasts[0], res.forecasts.slice(1), res.city, timestamp);
     });

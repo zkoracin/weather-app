@@ -8,6 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { spinnerInterceptor } from './interceptors/spinner.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { MomentDatePipe } from './pipes/moment-date.pipe';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -31,5 +32,6 @@ export const appConfig: ApplicationConfig = {
         defaultLanguage: 'en'
       }),
     ),
+    MomentDatePipe
   ]
 };
